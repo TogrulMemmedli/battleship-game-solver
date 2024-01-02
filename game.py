@@ -16,7 +16,16 @@ board = [
 # board visualization
 def visualize_game(board):
     for row in board:
-        row_str = ' '.join(['N' if not cell else str(cell[0]) for cell in row])
+        letters = []
+        for cell in row:
+            if cell and cell[0] != "N":
+                if cell[0] == "Y":
+                    letters.append('\033[92mY\033[0m')
+                elif cell[0] == "O":
+                    letters.append("\033[94mO\033[0m")
+            else:
+                letters.append("N")
+        row_str = ' '.join(letters)
         print(row_str)
 
 def fill_game_board(board):
